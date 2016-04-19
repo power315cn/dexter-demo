@@ -1,5 +1,6 @@
+#过滤不需要版本控制的文件或文件夹
 *.class
-
+target/
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
