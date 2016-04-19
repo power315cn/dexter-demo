@@ -1,0 +1,47 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:task="http://www.springframework.org/schema/task"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:util="http://www.springframework.org/schema/util"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+
+
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd  
+
+    http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.0.xsd
+    http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd">
+
+    <!-- 自动扫描的包名 -->  
+    <context:component-scan base-package="com.luokuang.open.stat.common.task" />
+    
+	<task:annotation-driven /> <!-- 定时器开关-->
+	
+	<util:properties id="config" location="classpath:config.properties"/>  
+
+	<bean id="obtaindata" class="com.luokuang.open.stat.common.task.ObtainDataTask"></bean>
+
+    <bean id="obtainVerAndChanTask" class="com.luokuang.open.stat.common.task.ObtainVerAndChanTask"></bean>
+	<task:scheduled-tasks>
+		<!-- 设备表数据同步接口   -->
+		<task:scheduled ref="obtaindata" method="obtainEquip" cron="0 0 0 * * ?" /><!--这里是每天晚上零点执行一次-->
+		<!-- 路局表数据同步接口  -->  
+		<task:scheduled ref="obtaindata" method="obtainRailway" cron="0 0 0 * * ?" /><!--这里是每天晚上零点执行一次-->
+		<!-- 火车表数据同步接口   -->  
+		<task:scheduled ref="obtaindata" method="obtainTrain" cron="0 0 0 * * ?" /><!--这里是每天晚上零点执行一次-->
+		<!-- 车次表数据同步接口   -->  
+		<task:scheduled ref="obtaindata" method="obtainTrainNumber" cron="0 0 0 * * ?" /><!--这里是每天晚上零点执行一次-->
+		<!-- 火车车次关系表数据同步接口   -->  
+		<task:scheduled ref="obtaindata" method="obtainTrainNumberRelation" cron="0 0 0 * * ?" /><!--这里是每天晚上零点执行一次-->  
+		<!-- 页面名称表数据同步接口 -->
+		<task:scheduled ref="obtaindata" method="obtainActivityName" cron="0 0 0 * * ?" /><!-- 这里是每天晚上零点执行一次-->
+		
+		<!-- channel 数据同步接口   -->
+		<task:scheduled ref="obtainVerAndChanTask" method="obtainChannel" cron="0 0 0 * * ?" /><!-- 这里是每天晚上零点执行一次  -->
+		<!-- version 数据同步接口   -->
+		<task:scheduled ref="obtainVerAndChanTask" method="obtainVersion" cron="0 0 0 * * ?" /><!-- 这里是每天晚上零点执行一次-->
+		
+		
+	</task:scheduled-tasks>
+    
+</beans>
