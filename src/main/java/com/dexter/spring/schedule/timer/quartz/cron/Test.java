@@ -1,0 +1,9 @@
+package com.dexter.spring.schedule.timer.quartz.cron;
+
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class Test {
+	public static void main(String[] args) throws Exception {
+		new ClassPathXmlApplicationContext("/com/dexter/spring/schedule/timer/quartz/cron/spring.xml");
+	}
+}
