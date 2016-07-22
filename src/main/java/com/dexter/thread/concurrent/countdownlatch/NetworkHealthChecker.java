@@ -1,4 +1,4 @@
-package com.dexter.demo.countdownlatch;
+package com.dexter.thread.concurrent.countdownlatch;
 
 import java.util.concurrent.CountDownLatch;
 

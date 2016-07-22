@@ -1,4 +1,4 @@
-package com.dexter.demo;
+package com.dexter.java.basic;
 
 import java.util.concurrent.TimeUnit;
 

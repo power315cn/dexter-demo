@@ -1,4 +1,5 @@
-package com.dexter.demo.countdownlatch;
+package com.dexter.thread.concurrent.countdownlatch;
+
 
 /**
  * @author Administrator
